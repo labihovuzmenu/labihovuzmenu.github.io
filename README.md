@@ -35,6 +35,10 @@ Then open <http://localhost:8000/>.
 All site assets use document-relative paths, so the menu works from the root
 domain and when opened locally.
 
+Foreign-language prices are converted from Uzbek so‘m using the official
+Central Bank of Uzbekistan rates dated 24 July 2026. The rates are stored in
+`script.js` and should be refreshed when the restaurant updates its menu.
+
 ## GitHub Pages deployment
 
 Deployment is handled by `.github/workflows/pages.yml`.

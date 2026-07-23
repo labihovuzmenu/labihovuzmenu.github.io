@@ -191,6 +191,9 @@ let navigationLock = false;
 let scrollAnimationFrame;
 let scrollTicking = false;
 
+// Official Central Bank of Uzbekistan rates for 24.07.2026 (UZS per unit).
+const exchangeRates = { USD: 12101.84, RUB: 153.75, CNY: 1787.65, KRW: 8.24 };
+
 const categoryTranslations = {
   birinchi: { en: "First courses", zh: "汤类", ko: "첫 번째 요리" },
   ikkinchi: { en: "Main courses", zh: "主菜", ko: "메인 요리" },
@@ -207,9 +210,43 @@ function categoryName(category) {
   return category.name[language] || categoryTranslations[category.id]?.[language] || category.name.uz;
 }
 
+function convertedAmount(amount, targetLanguage = language) {
+  if (targetLanguage === "uz") {
+    return `${Math.round(amount).toLocaleString("uz-UZ")} so‘m`;
+  }
+  if (targetLanguage === "ru") {
+    const value = Math.round((amount / exchangeRates.RUB) / 10) * 10;
+    return `${value.toLocaleString("ru-RU")} ₽`;
+  }
+  if (targetLanguage === "en") {
+    const value = Math.round((amount / exchangeRates.USD) * 20) / 20;
+    return `$${value.toFixed(2)}`;
+  }
+  if (targetLanguage === "zh") {
+    const value = Math.round(amount / exchangeRates.CNY);
+    return `¥${value.toLocaleString("zh-CN")}`;
+  }
+  const value = Math.round((amount / exchangeRates.KRW) / 100) * 100;
+  return `₩${value.toLocaleString("ko-KR")}`;
+}
+
 function localizedPrice(price) {
-  const units = { uz: "so‘m", ru: "сум", en: "UZS", zh: "UZS", ko: "UZS" };
-  return price.replace(/so‘m/g, units[language]);
+  if (language === "uz") return price;
+  return price
+    .replace(/\s*so‘m$/, "")
+    .split("–")
+    .map(part => convertedAmount(Number(part.replace(/\D/g, ""))))
+    .join("–");
+}
+
+function convertInlinePrices(description) {
+  if (language === "uz") return description;
+  const pattern = language === "ru"
+    ? /([\d\s]+)\s*сум/g
+    : /([\d,]+)\s*UZS/g;
+  return description.replace(pattern, (_, amount) =>
+    convertedAmount(Number(amount.replace(/\D/g, "")))
+  );
 }
 
 function renderMenu() {
@@ -222,7 +259,7 @@ function renderMenu() {
       <ul class="menu-list">${items.map((item, itemIndex) => {
         const localized = window.menuTranslations?.[language]?.[categoryIndex]?.[itemIndex];
         const dishName = localized?.[0] || item[useRussianMenu ? 1 : 0];
-        const description = localized?.[1] ?? item[useRussianMenu ? 4 : 3];
+        const description = convertInlinePrices(localized?.[1] ?? item[useRussianMenu ? 4 : 3]);
         const isMeta = /daqiqa|минут|minutes?|porsiya|порция|serving|kg|кг|分钟|분|\d[,\d]*\s*[Llл]/i.test(description);
         return `<li class="menu-item"><div class="menu-item-main"><h3 class="dish-name">${dishName}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`;
       }).join("")}</ul>
