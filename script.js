@@ -208,7 +208,7 @@ function categoryName(category) {
 }
 
 function localizedPrice(price) {
-  const units = { uz: "so‘m", ru: "сум", en: "UZS", zh: "乌兹别克苏姆", ko: "UZS" };
+  const units = { uz: "so‘m", ru: "сум", en: "UZS", zh: "UZS", ko: "UZS" };
   return price.replace(/so‘m/g, units[language]);
 }
 
