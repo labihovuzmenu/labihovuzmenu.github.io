@@ -207,14 +207,25 @@ function categoryName(category) {
   return category.name[language] || categoryTranslations[category.id]?.[language] || category.name.uz;
 }
 
+function localizedPrice(price) {
+  const units = { uz: "so‘m", ru: "сум", en: "UZS", zh: "乌兹别克苏姆", ko: "UZS" };
+  return price.replace(/so‘m/g, units[language]);
+}
+
 function renderMenu() {
   tabsRoot.innerHTML = menu.map((category, index) => `<button class="category-tab${index === 0 ? " active" : ""}" type="button" data-target="${category.id}">${categoryName(category)}</button>`).join("");
-  sectionsRoot.innerHTML = menu.map(category => {
+  sectionsRoot.innerHTML = menu.map((category, categoryIndex) => {
     const items = category.items;
     const useRussianMenu = language === "ru";
     return `<section class="menu-section" id="${category.id}" aria-labelledby="${category.id}-title">
       <div class="section-heading"><h2 id="${category.id}-title">${categoryName(category)}</h2><span class="decorative-line" aria-hidden="true"></span></div>
-      <ul class="menu-list">${items.map(item => { const description = item[useRussianMenu ? 4 : 3]; const isMeta = /daqiqa|минут|porsiya|порция|kg|кг|\d[,\d]*\s*[Llл]/i.test(description); return `<li class="menu-item"><div class="menu-item-main"><h3 class="dish-name">${item[useRussianMenu ? 1 : 0]}</h3><span class="dish-price">${item[2]}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`; }).join("")}</ul>
+      <ul class="menu-list">${items.map((item, itemIndex) => {
+        const localized = window.menuTranslations?.[language]?.[categoryIndex]?.[itemIndex];
+        const dishName = localized?.[0] || item[useRussianMenu ? 1 : 0];
+        const description = localized?.[1] ?? item[useRussianMenu ? 4 : 3];
+        const isMeta = /daqiqa|минут|minutes?|porsiya|порция|serving|kg|кг|分钟|분|\d[,\d]*\s*[Llл]/i.test(description);
+        return `<li class="menu-item"><div class="menu-item-main"><h3 class="dish-name">${dishName}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`;
+      }).join("")}</ul>
     </section>`;
   }).join("");
   if (!navigationLock) updateActiveFromPosition();
