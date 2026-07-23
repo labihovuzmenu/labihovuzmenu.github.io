@@ -295,11 +295,12 @@ function goToCategory(targetId) {
 }
 
 function updateInterface() {
+  const copy = translations[language] || translations.uz;
   document.documentElement.lang = language;
-  document.title = `Labi Hovuz — ${translations[language].subtitle}`;
-  document.querySelectorAll("[data-i18n]").forEach(element => { element.textContent = translations[language][element.dataset.i18n]; });
-  document.querySelectorAll("[data-i18n-placeholder]").forEach(element => { element.placeholder = translations[language][element.dataset.i18nPlaceholder]; });
-  document.querySelectorAll("[data-i18n-aria-label]").forEach(element => { element.setAttribute("aria-label", translations[language][element.dataset.i18nAriaLabel]); });
+  document.title = `Labi Hovuz — ${copy.subtitle}`;
+  document.querySelectorAll("[data-i18n]").forEach(element => { element.textContent = copy[element.dataset.i18n]; });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(element => { element.placeholder = copy[element.dataset.i18nPlaceholder]; });
+  document.querySelectorAll("[data-i18n-aria-label]").forEach(element => { element.setAttribute("aria-label", copy[element.dataset.i18nAriaLabel]); });
   document.querySelectorAll(".language-button").forEach(button => {
     const active = button.dataset.language === language;
     button.classList.toggle("active", active);
