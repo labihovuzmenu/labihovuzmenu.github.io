@@ -8,6 +8,18 @@ const translations = {
   ru: {
     subtitle: "Меню ресторана", welcome: "Добро пожаловать", intro: "Познакомьтесь с нашими вкусными блюдами", categories: "Категории", swipeHint: "Листайте",
     hours: "Ежедневно: 09:00–23:00", addressLabel: "Адрес:", address: "Адрес ресторана", phoneLabel: "Телефон:", service: "Обслуживание: 10%", backToTop: "Наверх", bonAppetit: "Приятного аппетита!"
+  },
+  en: {
+    subtitle: "Restaurant menu", welcome: "Welcome", intro: "Discover our delicious dishes", categories: "Categories", swipeHint: "Swipe",
+    hours: "Daily: 09:00–23:00", addressLabel: "Address:", address: "Restaurant address", phoneLabel: "Phone:", service: "Service charge: 10%", backToTop: "Back to top", bonAppetit: "Enjoy your meal!"
+  },
+  zh: {
+    subtitle: "餐厅菜单", welcome: "欢迎光临", intro: "探索我们的美味佳肴", categories: "菜品分类", swipeHint: "滑动浏览",
+    hours: "每日：09:00–23:00", addressLabel: "地址：", address: "餐厅地址", phoneLabel: "电话：", service: "服务费：10%", backToTop: "返回顶部", bonAppetit: "祝您用餐愉快！"
+  },
+  ko: {
+    subtitle: "레스토랑 메뉴", welcome: "환영합니다", intro: "맛있는 요리를 만나보세요", categories: "카테고리", swipeHint: "옆으로 밀기",
+    hours: "매일: 09:00–23:00", addressLabel: "주소:", address: "레스토랑 주소", phoneLabel: "전화:", service: "서비스 요금: 10%", backToTop: "맨 위로", bonAppetit: "맛있게 드세요!"
   }
 };
 
@@ -172,18 +184,37 @@ const menu = [
 const tabsRoot = document.querySelector("#category-tabs");
 const sectionsRoot = document.querySelector("#menu-sections");
 const backToTop = document.querySelector("#back-to-top");
-let language = localStorage.getItem("labi-havus-language") === "ru" ? "ru" : "uz";
+const supportedLanguages = ["uz", "ru", "en", "zh", "ko"];
+const savedLanguage = localStorage.getItem("labi-havus-language");
+let language = supportedLanguages.includes(savedLanguage) ? savedLanguage : "uz";
 let navigationLock = false;
 let scrollAnimationFrame;
 let scrollTicking = false;
 
+const categoryTranslations = {
+  birinchi: { en: "First courses", zh: "汤类", ko: "첫 번째 요리" },
+  ikkinchi: { en: "Main courses", zh: "主菜", ko: "메인 요리" },
+  yevropa: { en: "European dishes", zh: "欧洲菜", ko: "유럽 요리" },
+  kabob: { en: "Kebabs", zh: "烤肉", ko: "케밥" },
+  garnir: { en: "Side dishes", zh: "配菜", ko: "사이드 메뉴" },
+  ichimlik: { en: "Drinks", zh: "饮品", ko: "음료" },
+  non: { en: "Bread", zh: "面包", ko: "빵" },
+  desert: { en: "Desserts", zh: "甜点", ko: "디저트" },
+  salat: { en: "Salads", zh: "沙拉", ko: "샐러드" }
+};
+
+function categoryName(category) {
+  return category.name[language] || categoryTranslations[category.id]?.[language] || category.name.uz;
+}
+
 function renderMenu() {
-  tabsRoot.innerHTML = menu.map((category, index) => `<button class="category-tab${index === 0 ? " active" : ""}" type="button" data-target="${category.id}">${category.name[language]}</button>`).join("");
+  tabsRoot.innerHTML = menu.map((category, index) => `<button class="category-tab${index === 0 ? " active" : ""}" type="button" data-target="${category.id}">${categoryName(category)}</button>`).join("");
   sectionsRoot.innerHTML = menu.map(category => {
     const items = category.items;
+    const useRussianMenu = language === "ru";
     return `<section class="menu-section" id="${category.id}" aria-labelledby="${category.id}-title">
-      <div class="section-heading"><h2 id="${category.id}-title">${category.name[language]}</h2><span class="decorative-line" aria-hidden="true"></span></div>
-      <ul class="menu-list">${items.map(item => { const description = item[language === "uz" ? 3 : 4]; const isMeta = /daqiqa|минут|porsiya|порция|kg|кг|\d[,\d]*\s*[Llл]/i.test(description); return `<li class="menu-item"><div class="menu-item-main"><h3 class="dish-name">${item[language === "uz" ? 0 : 1]}</h3><span class="dish-price">${item[2]}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`; }).join("")}</ul>
+      <div class="section-heading"><h2 id="${category.id}-title">${categoryName(category)}</h2><span class="decorative-line" aria-hidden="true"></span></div>
+      <ul class="menu-list">${items.map(item => { const description = item[useRussianMenu ? 4 : 3]; const isMeta = /daqiqa|минут|porsiya|порция|kg|кг|\d[,\d]*\s*[Llл]/i.test(description); return `<li class="menu-item"><div class="menu-item-main"><h3 class="dish-name">${item[useRussianMenu ? 1 : 0]}</h3><span class="dish-price">${item[2]}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`; }).join("")}</ul>
     </section>`;
   }).join("");
   if (!navigationLock) updateActiveFromPosition();
@@ -265,7 +296,7 @@ function goToCategory(targetId) {
 
 function updateInterface() {
   document.documentElement.lang = language;
-  document.title = language === "uz" ? "Labi Hovuz — Restoran menyusi" : "Labi Hovuz — Меню ресторана";
+  document.title = `Labi Hovuz — ${translations[language].subtitle}`;
   document.querySelectorAll("[data-i18n]").forEach(element => { element.textContent = translations[language][element.dataset.i18n]; });
   document.querySelectorAll("[data-i18n-placeholder]").forEach(element => { element.placeholder = translations[language][element.dataset.i18nPlaceholder]; });
   document.querySelectorAll("[data-i18n-aria-label]").forEach(element => { element.setAttribute("aria-label", translations[language][element.dataset.i18nAriaLabel]); });

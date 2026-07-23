@@ -1,8 +1,9 @@
 # Labi Hovuz digital menu
 
-A responsive Uzbek and Russian restaurant menu built with plain HTML, CSS, and
-JavaScript. It is fully static: there is no build step, server runtime, database,
-package manager, or third-party deployment dependency.
+A responsive restaurant menu with Uzbek, Russian, English, Chinese, and Korean
+interface options, built with plain HTML, CSS, and JavaScript. It is fully
+static: there is no build step, server runtime, database, package manager, or
+third-party deployment dependency.
 
 ## Live site
 
