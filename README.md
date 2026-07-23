@@ -6,7 +6,7 @@ package manager, or third-party deployment dependency.
 
 ## Live site
 
-GitHub Pages: <https://nextoneforai.github.io/labihovuzmenu/>
+GitHub Pages: <https://labihovuzmenu.github.io/>
 
 Use this URL as the destination for the restaurant's QR code. Test the printed QR
 code on both iOS and Android before placing it on tables.
@@ -29,8 +29,8 @@ Then open <http://localhost:8000/>.
 - Each dish uses this order:
   `[Uzbek name, Russian name, price, Uzbek description, Russian description]`.
 
-All site assets use document-relative paths, so the menu works both at the
-repository subpath `/labihovuzmenu/` and when opened locally.
+All site assets use document-relative paths, so the menu works from the root
+domain and when opened locally.
 
 ## GitHub Pages deployment
 
@@ -41,7 +41,7 @@ Deployment is handled by `.github/workflows/pages.yml`.
 3. Under **Build and deployment**, select **GitHub Actions** as the source.
 4. Open the **Actions** tab and wait for the **Deploy static site to GitHub
    Pages** workflow to finish.
-5. Verify <https://nextoneforai.github.io/labihovuzmenu/>.
+5. Verify <https://labihovuzmenu.github.io/>.
 
 Every push to `main` deploys the repository root automatically. The `.nojekyll`
 file ensures GitHub Pages serves all static files without Jekyll processing.
