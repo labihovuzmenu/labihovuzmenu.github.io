@@ -1,5 +1,5 @@
 :root {
-  color-scheme: only light;
+  color-scheme: light dark;
   --background: #f7f3eb;
   --surface: #fffdf8;
   --primary-text: #28231f;
@@ -90,6 +90,68 @@ a { color: inherit; text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (hover: hover) { .category-tab:not(.active):hover, .language-button:not(.active):hover, .site-footer a:hover { color: var(--accent); } }
 @media (hover: hover) { .back-to-top:hover { color: var(--accent); background: var(--surface); } }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #181512;
+    --surface: #211d19;
+    --primary-text: #f5eee4;
+    --secondary-text: #bdb2a6;
+    --accent: #d98a8e;
+    --border: #443b34;
+  }
+
+  body { background: radial-gradient(circle at 50% -15%, #30251f 0, var(--background) 36%); }
+  .site-header {
+    border-bottom-color: rgba(95, 80, 68, .68);
+    background: rgba(24, 21, 18, .88);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .2);
+  }
+  .brand-mark { color: #e7a2a5; border-color: #b9656a; }
+  .language-button.active {
+    border-color: #a84e54;
+    color: #fff8f2;
+    background: #8f3d43;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, .28);
+  }
+  .intro .intro-service {
+    border-color: #554940;
+    color: #ddd3c8;
+    background: #27221e;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  }
+  .menu-tools {
+    border-block-color: rgba(87, 73, 63, .72);
+    background: rgba(27, 23, 20, .9);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .3);
+  }
+  .category-nav::after {
+    color: #e09a9e;
+    background: rgba(27, 23, 20, .96);
+    box-shadow: -10px 0 14px rgba(27, 23, 20, .98);
+  }
+  .category-tab {
+    border-color: #51463d;
+    color: #c9beb2;
+    background: #29241f;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
+  }
+  .category-tab.active {
+    border-color: #bd666b;
+    color: #fff9f3;
+    -webkit-text-fill-color: #fff9f3;
+    background: #8f3d43;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .12);
+  }
+  .dish-price { color: #ef9da1; }
+  .dish-description.menu-meta { color: #c8bdb1; }
+  .site-footer { background: #1d1916; }
+  .back-to-top {
+    border-color: #c96f74;
+    color: #fff9f3;
+    background: #8f3d43;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .38);
+  }
+}
 @media (min-width: 700px) {
   .container { width: min(100% - 64px, var(--content-width)); }
   .intro { padding-block: 68px 58px; }
