@@ -251,6 +251,7 @@ function convertInlinePrices(description) {
 
 function renderMenu() {
   tabsRoot.innerHTML = menu.map((category, index) => `<button class="category-tab${index === 0 ? " active" : ""}" type="button" data-target="${category.id}">${categoryName(category)}</button>`).join("");
+  tabsRoot.scrollLeft = 0;
   sectionsRoot.innerHTML = menu.map((category, categoryIndex) => {
     const items = category.items;
     const useRussianMenu = language === "ru";
@@ -265,14 +266,20 @@ function renderMenu() {
       }).join("")}</ul>
     </section>`;
   }).join("");
-  if (!navigationLock) updateActiveFromPosition();
+  if (!navigationLock) {
+    updateActiveFromPosition();
+    requestAnimationFrame(() => {
+      const activeTab = tabsRoot.querySelector(".category-tab.active");
+      if (activeTab) centerActiveTab(activeTab, "auto");
+    });
+  }
 }
 
-function centerActiveTab(tab) {
+function centerActiveTab(tab, behavior) {
   const targetLeft = tab.offsetLeft - (tabsRoot.clientWidth - tab.offsetWidth) / 2;
   tabsRoot.scrollTo({
     left: Math.max(0, targetLeft),
-    behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+    behavior: behavior || (matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth")
   });
 }
 
