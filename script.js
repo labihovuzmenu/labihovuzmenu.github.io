@@ -207,19 +207,24 @@ function categoryName(category) {
   return category.name[language] || categoryTranslations[category.id]?.[language] || category.name.uz;
 }
 
+function formatSomAmount(amount) {
+  return String(Math.round(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
 function localizedPrice(price) {
-  return price
+  const amounts = price
     .replace(/\s*(?:so‘m|сум|UZS)$/, "")
     .split("–")
-    .map(part => `${Number(part.replace(/\D/g, "")).toLocaleString("uz-UZ")} so‘m`)
+    .map(part => formatSomAmount(Number(part.replace(/\D/g, ""))))
     .join("–");
+  return `${amounts} so‘m`;
 }
 
 function convertInlinePrices(description) {
   if (language === "uz") return description;
   const pattern = /([\d\s,]+)\s*(?:сум|UZS)/g;
   return description.replace(pattern, (_, amount) =>
-    `${Number(amount.replace(/\D/g, "")).toLocaleString("uz-UZ")} so‘m`
+    `${formatSomAmount(Number(amount.replace(/\D/g, "")))} so‘m`
   );
 }
 
