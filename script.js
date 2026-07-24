@@ -191,9 +191,6 @@ let navigationLock = false;
 let scrollAnimationFrame;
 let scrollTicking = false;
 
-// Official Central Bank of Uzbekistan rates for 24.07.2026 (UZS per unit).
-const exchangeRates = { USD: 12101.84, RUB: 153.75, CNY: 1787.65, KRW: 8.24 };
-
 const categoryTranslations = {
   birinchi: { en: "First courses", zh: "汤类", ko: "첫 번째 요리" },
   ikkinchi: { en: "Main courses", zh: "主菜", ko: "메인 요리" },
@@ -210,42 +207,19 @@ function categoryName(category) {
   return category.name[language] || categoryTranslations[category.id]?.[language] || category.name.uz;
 }
 
-function convertedAmount(amount, targetLanguage = language) {
-  if (targetLanguage === "uz") {
-    return `${Math.round(amount).toLocaleString("uz-UZ")} so‘m`;
-  }
-  if (targetLanguage === "ru") {
-    const value = Math.round((amount / exchangeRates.RUB) / 10) * 10;
-    return `${value.toLocaleString("ru-RU")} ₽`;
-  }
-  if (targetLanguage === "en") {
-    const value = Math.round((amount / exchangeRates.USD) * 20) / 20;
-    return `$${value.toFixed(2)}`;
-  }
-  if (targetLanguage === "zh") {
-    const value = Math.round(amount / exchangeRates.CNY);
-    return `¥${value.toLocaleString("zh-CN")}`;
-  }
-  const value = Math.round((amount / exchangeRates.KRW) / 100) * 100;
-  return `₩${value.toLocaleString("ko-KR")}`;
-}
-
 function localizedPrice(price) {
-  if (language === "uz") return price;
   return price
-    .replace(/\s*so‘m$/, "")
+    .replace(/\s*(?:so‘m|сум|UZS)$/, "")
     .split("–")
-    .map(part => convertedAmount(Number(part.replace(/\D/g, ""))))
+    .map(part => `${Number(part.replace(/\D/g, "")).toLocaleString("uz-UZ")} so‘m`)
     .join("–");
 }
 
 function convertInlinePrices(description) {
   if (language === "uz") return description;
-  const pattern = language === "ru"
-    ? /([\d\s]+)\s*сум/g
-    : /([\d,]+)\s*UZS/g;
+  const pattern = /([\d\s,]+)\s*(?:сум|UZS)/g;
   return description.replace(pattern, (_, amount) =>
-    convertedAmount(Number(amount.replace(/\D/g, "")))
+    `${Number(amount.replace(/\D/g, "")).toLocaleString("uz-UZ")} so‘m`
   );
 }
 
