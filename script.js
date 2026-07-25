@@ -259,9 +259,23 @@ function renderMenu() {
 }
 
 function centerActiveTab(tab, behavior) {
-  const targetLeft = tab.offsetLeft - (tabsRoot.clientWidth - tab.offsetWidth) / 2;
+  const viewLeft = tabsRoot.scrollLeft;
+  const visibleWidth = tabsRoot.clientWidth - 35;
+  const viewRight = viewLeft + visibleWidth;
+  const tabLeft = tab.offsetLeft;
+  const tabRight = tabLeft + tab.offsetWidth;
+  let targetLeft = viewLeft;
+
+  if (tabLeft < viewLeft) {
+    targetLeft = Math.max(0, tabLeft - 8);
+  } else if (tabRight > viewRight) {
+    targetLeft = tabRight - visibleWidth + 8;
+  } else {
+    return;
+  }
+
   tabsRoot.scrollTo({
-    left: Math.max(0, targetLeft),
+    left: targetLeft,
     behavior: behavior || (matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth")
   });
 }
