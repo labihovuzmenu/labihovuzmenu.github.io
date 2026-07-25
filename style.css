@@ -45,6 +45,8 @@ a { color: inherit; text-underline-offset: 3px; }
 .intro > [data-i18n="intro"] { margin: 12px 0 0; color: var(--secondary-text); font-size: 15px; }
 .intro .intro-service { display: inline-flex; align-items: center; gap: 7px; margin: 22px 0 0; padding: 6px 11px; border: 1px solid var(--border); border-radius: 999px; color: var(--secondary-text); background: var(--surface); font-size: 11px; font-weight: 700; letter-spacing: .04em; }
 .intro-service > span:first-child { color: var(--accent); }
+.waiter-hold-hint { width: min(100%, 470px); margin: 13px auto 0; color: var(--secondary-text); font-size: 12px; line-height: 1.45; }
+.waiter-hold-hint:empty { display: none; }
 
 /* Sticky category controls */
 .menu-tools { position: sticky; z-index: 10; top: 0; padding: 10px 0 12px; border-block: 1px solid rgba(222, 213, 200, .75); background: rgba(247, 243, 235, .76); box-shadow: 0 8px 26px rgba(40, 35, 31, .08); backdrop-filter: blur(18px) saturate(145%); -webkit-backdrop-filter: blur(18px) saturate(145%); }
