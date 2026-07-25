@@ -180,9 +180,8 @@ a { color: inherit; text-underline-offset: 3px; }
   .language-button { min-width: 38px; min-height: 38px; }
   .intro { padding-block: 42px 35px; }
   .menu-tools { padding-block: 9px 11px; }
-  .category-nav::after { display: none; }
-  .category-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; padding-right: 0; overflow: visible; }
-  .category-tab { width: 100%; min-width: 0; min-height: 42px; padding: 7px 5px; white-space: normal; overflow-wrap: anywhere; font-size: 12px; line-height: 1.18; }
+  .category-tabs { gap: 7px; }
+  .category-tab { min-height: 44px; padding-inline: 15px; font-size: 14px; }
   .menu-sections { padding-top: 13px; }
   .menu-section { padding-top: 34px; }
   .menu-item { padding-block: 17px; }
@@ -198,8 +197,7 @@ a { color: inherit; text-underline-offset: 3px; }
   .brand small { font-size: 10px; }
   .brand-mark { width: 35px; height: 35px; }
   .brand strong { font-size: 17px; }
-  .category-tabs { gap: 6px; }
-  .category-tab { padding-inline: 4px; font-size: 11px; }
+  .category-tabs { gap: 7px; }
   .menu-item-main { gap: 10px; }
   .dish-name { font-size: 18px; }
   .dish-price { font-size: 14px; }

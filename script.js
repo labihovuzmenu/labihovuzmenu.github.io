@@ -375,7 +375,7 @@ function updateActiveFromPosition() {
     else break;
   }
 
-  activateTab(current.id, true);
+  activateTab(current.id);
 }
 
 window.addEventListener("scroll", () => {
