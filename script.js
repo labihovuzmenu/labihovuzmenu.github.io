@@ -276,7 +276,7 @@ function centerActiveTab(tab, behavior) {
 
   tabsRoot.scrollTo({
     left: targetLeft,
-    behavior: behavior || (matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth")
+    behavior: "auto"
   });
 }
 
