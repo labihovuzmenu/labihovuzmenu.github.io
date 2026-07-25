@@ -241,7 +241,11 @@ function renderMenu() {
         const dishName = localized?.[0] || item[useRussianMenu ? 1 : 0];
         const description = convertInlinePrices(localized?.[1] ?? item[useRussianMenu ? 4 : 3]);
         const isMeta = /daqiqa|минут|minutes?|porsiya|порция|serving|kg|кг|分钟|분|\d[,\d]*\s*[Llл]/i.test(description);
-        return `<li class="menu-item"><div class="menu-item-main"><h3 class="dish-name">${dishName}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`;
+        const holdEnabled = language !== "uz";
+        const dishNameMarkup = holdEnabled
+          ? `<span class="dish-name-localized">${dishName}</span><span class="dish-name-uz"><small>UZ</small>${item[0]}</span>`
+          : dishName;
+        return `<li class="menu-item${holdEnabled ? " waiter-hold-enabled" : ""}"><div class="menu-item-main"><h3 class="dish-name">${dishNameMarkup}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`;
       }).join("")}</ul>
     </section>`;
   }).join("");
@@ -380,6 +384,41 @@ tabsRoot.addEventListener("click", event => {
   if (!tab) return;
   event.preventDefault();
   goToCategory(tab.dataset.target);
+});
+let waiterHoldTimer;
+let waiterHoldItem;
+let waiterPointerStart;
+
+function clearWaiterHold() {
+  clearTimeout(waiterHoldTimer);
+  waiterHoldTimer = undefined;
+  waiterHoldItem?.classList.remove("show-waiter-uz");
+  waiterHoldItem = undefined;
+  waiterPointerStart = undefined;
+}
+
+sectionsRoot.addEventListener("pointerdown", event => {
+  const item = event.target.closest(".waiter-hold-enabled");
+  if (!item) return;
+
+  clearWaiterHold();
+  waiterHoldItem = item;
+  waiterPointerStart = { x: event.clientX, y: event.clientY };
+  waiterHoldTimer = setTimeout(() => {
+    item.classList.add("show-waiter-uz");
+    waiterHoldTimer = undefined;
+  }, 400);
+});
+sectionsRoot.addEventListener("pointermove", event => {
+  if (!waiterPointerStart) return;
+  if (Math.hypot(event.clientX - waiterPointerStart.x, event.clientY - waiterPointerStart.y) > 12) {
+    clearWaiterHold();
+  }
+});
+document.addEventListener("pointerup", clearWaiterHold);
+document.addEventListener("pointercancel", clearWaiterHold);
+sectionsRoot.addEventListener("contextmenu", event => {
+  if (event.target.closest(".waiter-hold-enabled")) event.preventDefault();
 });
 document.querySelectorAll(".language-button").forEach(button => button.addEventListener("click", () => {
   language = button.dataset.language;
