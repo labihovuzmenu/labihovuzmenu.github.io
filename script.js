@@ -3,23 +3,23 @@
 const translations = {
   uz: {
     subtitle: "Restoran menyusi", welcome: "Xush kelibsiz", intro: "Mazali taomlarimiz bilan tanishing", categories: "Kategoriyalar", swipeHint: "Surib ko‘ring",
-    hours: "Har kuni: 09:00–23:00", addressLabel: "Manzil:", address: "Restoran manzili", phoneLabel: "Telefon:", service: "Xizmat haqi: 10%", waiterHint: "", backToTop: "Tepaga qaytish", bonAppetit: "Yoqimli ishtaha!"
+    hours: "Har kuni: 09:00–23:00", addressLabel: "Manzil:", address: "Restoran manzili", phoneLabel: "Telefon:", service: "Xizmat haqi: 10%", waiterHint: "Taomni bosib turing — ofitsiant uchun ruscha nomi chiqadi", backToTop: "Tepaga qaytish", bonAppetit: "Yoqimli ishtaha!"
   },
   ru: {
     subtitle: "Меню ресторана", welcome: "Добро пожаловать", intro: "Познакомьтесь с нашими вкусными блюдами", categories: "Категории", swipeHint: "Листайте",
-    hours: "Ежедневно: 09:00–23:00", addressLabel: "Адрес:", address: "Адрес ресторана", phoneLabel: "Телефон:", service: "Обслуживание: 10%", waiterHint: "Удерживайте блюдо, чтобы показать официанту название на узбекском", backToTop: "Наверх", bonAppetit: "Приятного аппетита!"
+    hours: "Ежедневно: 09:00–23:00", addressLabel: "Адрес:", address: "Адрес ресторана", phoneLabel: "Телефон:", service: "Обслуживание: 10%", waiterHint: "", backToTop: "Наверх", bonAppetit: "Приятного аппетита!"
   },
   en: {
     subtitle: "Restaurant menu", welcome: "Welcome", intro: "Discover our delicious dishes", categories: "Categories", swipeHint: "Swipe",
-    hours: "Daily: 09:00–23:00", addressLabel: "Address:", address: "Restaurant address", phoneLabel: "Phone:", service: "Service charge: 10%", waiterHint: "Press and hold a dish to show its Uzbek name to the waiter", backToTop: "Back to top", bonAppetit: "Enjoy your meal!"
+    hours: "Daily: 09:00–23:00", addressLabel: "Address:", address: "Restaurant address", phoneLabel: "Phone:", service: "Service charge: 10%", waiterHint: "Press and hold a dish to show its original Russian menu name", backToTop: "Back to top", bonAppetit: "Enjoy your meal!"
   },
   zh: {
     subtitle: "餐厅菜单", welcome: "欢迎光临", intro: "探索我们的美味佳肴", categories: "菜品分类", swipeHint: "滑动浏览",
-    hours: "每日：09:00–23:00", addressLabel: "地址：", address: "餐厅地址", phoneLabel: "电话：", service: "服务费：10%", waiterHint: "长按菜品，可向服务员显示乌兹别克语名称", backToTop: "返回顶部", bonAppetit: "祝您用餐愉快！"
+    hours: "每日：09:00–23:00", addressLabel: "地址：", address: "餐厅地址", phoneLabel: "电话：", service: "服务费：10%", waiterHint: "长按菜品可显示菜单上的原始俄语名称", backToTop: "返回顶部", bonAppetit: "祝您用餐愉快！"
   },
   ko: {
     subtitle: "레스토랑 메뉴", welcome: "환영합니다", intro: "맛있는 요리를 만나보세요", categories: "카테고리", swipeHint: "옆으로 밀기",
-    hours: "매일: 09:00–23:00", addressLabel: "주소:", address: "레스토랑 주소", phoneLabel: "전화:", service: "서비스 요금: 10%", waiterHint: "음식을 길게 누르면 직원에게 우즈베크어 이름이 표시됩니다", backToTop: "맨 위로", bonAppetit: "맛있게 드세요!"
+    hours: "매일: 09:00–23:00", addressLabel: "주소:", address: "레스토랑 주소", phoneLabel: "전화:", service: "서비스 요금: 10%", waiterHint: "음식을 길게 누르면 메뉴의 원래 러시아어 이름이 표시됩니다", backToTop: "맨 위로", bonAppetit: "맛있게 드세요!"
   }
 };
 
@@ -241,9 +241,9 @@ function renderMenu() {
         const dishName = localized?.[0] || item[useRussianMenu ? 1 : 0];
         const description = convertInlinePrices(localized?.[1] ?? item[useRussianMenu ? 4 : 3]);
         const isMeta = /daqiqa|минут|minutes?|porsiya|порция|serving|kg|кг|分钟|분|\d[,\d]*\s*[Llл]/i.test(description);
-        const holdEnabled = language !== "uz";
+        const holdEnabled = language !== "ru";
         const dishNameMarkup = holdEnabled
-          ? `<span class="dish-name-localized">${dishName}</span><span class="dish-name-uz"><small>UZ</small>${item[0]}</span>`
+          ? `<span class="dish-name-localized">${dishName}</span><span class="dish-name-original"><small>RU</small>${item[1]}</span>`
           : dishName;
         return `<li class="menu-item${holdEnabled ? " waiter-hold-enabled" : ""}"><div class="menu-item-main"><h3 class="dish-name">${dishNameMarkup}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`;
       }).join("")}</ul>
@@ -406,7 +406,7 @@ let waiterPointerStart;
 function clearWaiterHold() {
   clearTimeout(waiterHoldTimer);
   waiterHoldTimer = undefined;
-  waiterHoldItem?.classList.remove("show-waiter-uz");
+  waiterHoldItem?.classList.remove("show-waiter-original");
   waiterHoldItem = undefined;
   waiterPointerStart = undefined;
 }
@@ -419,7 +419,7 @@ sectionsRoot.addEventListener("pointerdown", event => {
   waiterHoldItem = item;
   waiterPointerStart = { x: event.clientX, y: event.clientY };
   waiterHoldTimer = setTimeout(() => {
-    item.classList.add("show-waiter-uz");
+    item.classList.add("show-waiter-original");
     waiterHoldTimer = undefined;
   }, 400);
 });

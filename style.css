@@ -74,11 +74,11 @@ a { color: inherit; text-underline-offset: 3px; }
 .dish-description.menu-meta { color: #655d56; font-size: 14px; font-weight: 600; }
 .dish-description:empty { display: none; }
 .waiter-hold-enabled { touch-action: pan-y; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
-.dish-name-uz { display: none; color: var(--accent); }
-.dish-name-uz small { display: inline-grid; place-items: center; min-width: 29px; min-height: 21px; margin-right: 8px; border-radius: 999px; color: #fffdf8; background: var(--accent); font: 800 9px/1 var(--sans); letter-spacing: .08em; vertical-align: 3px; }
-.show-waiter-uz .dish-name-localized { display: none; }
-.show-waiter-uz .dish-name-uz { display: inline; }
-.show-waiter-uz { background: rgba(111, 47, 50, .055); }
+.dish-name-original { display: none; color: var(--accent); }
+.dish-name-original small { display: inline-grid; place-items: center; min-width: 29px; min-height: 21px; margin-right: 8px; border-radius: 999px; color: #fffdf8; background: var(--accent); font: 800 9px/1 var(--sans); letter-spacing: .08em; vertical-align: 3px; }
+.show-waiter-original .dish-name-localized { display: none; }
+.show-waiter-original .dish-name-original { display: inline; }
+.show-waiter-original { background: rgba(111, 47, 50, .055); }
 
 /* Ready for optional future dish images; inactive in this release. */
 .menu-item-with-image { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; }
@@ -153,7 +153,7 @@ a { color: inherit; text-underline-offset: 3px; }
   }
   .dish-price { color: #ef9da1; }
   .dish-description.menu-meta { color: #c8bdb1; }
-  .show-waiter-uz { background: rgba(217, 138, 142, .08); }
+  .show-waiter-original { background: rgba(217, 138, 142, .08); }
   .site-footer { background: #1d1916; }
   .back-to-top {
     border-color: #c96f74;

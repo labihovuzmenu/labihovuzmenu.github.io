@@ -37,8 +37,9 @@ domain and when opened locally.
 
 Prices stay in Uzbek so‘m in every language. Changing the interface language
 translates the menu text only and never converts the restaurant's prices.
-When a foreign language is active, pressing and holding a dish briefly shows
-its Uzbek name for the waiter; releasing it restores the customer's language.
+When a non-Russian language is active, pressing and holding a dish shows its
+original Russian menu name for the waiter; releasing restores the customer's
+selected language.
 
 ## GitHub Pages deployment
 
