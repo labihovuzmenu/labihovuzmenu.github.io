@@ -184,9 +184,9 @@ const menu = [
 const tabsRoot = document.querySelector("#category-tabs");
 const sectionsRoot = document.querySelector("#menu-sections");
 const backToTop = document.querySelector("#back-to-top");
-const supportedLanguages = ["uz", "ru", "en", "zh", "ko"];
+const supportedLanguages = ["ru", "en", "zh", "ko"];
 const savedLanguage = localStorage.getItem("labi-havus-language");
-let language = supportedLanguages.includes(savedLanguage) ? savedLanguage : "uz";
+let language = supportedLanguages.includes(savedLanguage) ? savedLanguage : "ru";
 let navigationLock = false;
 let scrollAnimationFrame;
 let scrollTicking = false;
@@ -366,7 +366,7 @@ function goToCategory(targetId) {
 }
 
 function updateInterface() {
-  const copy = translations[language] || translations.uz;
+  const copy = translations[language] || translations.ru;
   document.documentElement.lang = language;
   document.title = `Labi Hovuz — ${copy.subtitle}`;
   document.querySelectorAll("[data-i18n]").forEach(element => { element.textContent = copy[element.dataset.i18n]; });

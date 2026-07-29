@@ -1,6 +1,6 @@
 # Labi Hovuz digital menu
 
-A responsive restaurant menu with complete Uzbek, Russian, English, Chinese,
+A responsive restaurant menu with complete Russian, English, Chinese,
 and Korean translations for its interface, categories, dishes, and
 descriptions. It is built with plain HTML, CSS, and JavaScript and is fully
 static: there is no build step, server runtime, database, package manager, or
@@ -37,6 +37,8 @@ domain and when opened locally.
 
 Prices stay in Uzbek so‘m in every language. Changing the interface language
 translates the menu text only and never converts the restaurant's prices.
+Russian is the default language; the public language switcher offers Russian,
+English, Chinese, and Korean.
 When a non-Russian language is active, pressing and holding a dish shows its
 original Russian menu name for the waiter; releasing restores the customer's
 selected language.
@@ -57,7 +59,7 @@ file ensures GitHub Pages serves all static files without Jekyll processing.
 
 ## Pre-deployment checklist
 
-- The Uzbek/Russian switch changes every translated label.
+- The Russian, English, Chinese, and Korean switches change every translated label.
 - Each category button scrolls to the correct section.
 - The back-to-top button works after scrolling.
 - The phone and Instagram links point to the intended destination.
