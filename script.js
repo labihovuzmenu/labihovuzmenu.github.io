@@ -203,6 +203,21 @@ const categoryTranslations = {
   salat: { en: "Salads", zh: "沙拉", ko: "샐러드" }
 };
 
+const dishImages = {
+  "2:5": "assets/menu/gul-osh.jpg",
+  "3:0": "assets/menu/baliq-kabob.jpg",
+  "3:2": "assets/menu/qiyma-kabob.jpg",
+  "3:3": "assets/menu/pomidorli-kuskovoy.jpg",
+  "3:4": "assets/menu/qoy-goshti-kabob.jpg",
+  "3:7": "assets/menu/jigar-kabob.jpg",
+  "3:10": "assets/menu/tovuq-kabob.jpg",
+  "4:0": "assets/menu/fri.jpg",
+  "5:6": "assets/menu/nortok.jpg",
+  "7:0": "assets/menu/pirozhnoe.jpg",
+  "8:5": "assets/menu/achchiq-chuchuk.jpg",
+  "8:18": "assets/menu/grekcha-salat.jpg"
+};
+
 function categoryName(category) {
   return category.name[language] || categoryTranslations[category.id]?.[language] || category.name.uz;
 }
@@ -242,10 +257,14 @@ function renderMenu() {
         const description = convertInlinePrices(localized?.[1] ?? item[useRussianMenu ? 4 : 3]);
         const isMeta = /daqiqa|минут|minutes?|porsiya|порция|serving|kg|кг|分钟|분|\d[,\d]*\s*[Llл]/i.test(description);
         const holdEnabled = language !== "ru";
+        const imageSource = dishImages[`${categoryIndex}:${itemIndex}`];
         const dishNameMarkup = holdEnabled
           ? `<span class="dish-name-localized">${dishName}</span><span class="dish-name-original"><small>RU</small>${item[1]}</span>`
           : dishName;
-        return `<li class="menu-item${holdEnabled ? " waiter-hold-enabled" : ""}"><div class="menu-item-main"><h3 class="dish-name">${dishNameMarkup}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></li>`;
+        const imageMarkup = imageSource
+          ? `<img class="menu-item-image" src="${imageSource}" alt="${dishName}" width="240" height="180" loading="lazy" decoding="async">`
+          : "";
+        return `<li class="menu-item${imageSource ? " menu-item-with-image" : ""}${holdEnabled ? " waiter-hold-enabled" : ""}">${imageMarkup}<div class="menu-item-content"><div class="menu-item-main"><h3 class="dish-name">${dishNameMarkup}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></div></li>`;
       }).join("")}</ul>
     </section>`;
   }).join("");
