@@ -42,6 +42,8 @@ English, Chinese, and Korean.
 When a non-Russian language is active, pressing and holding a dish shows its
 original Russian menu name for the waiter; releasing restores the customer's
 selected language.
+Tapping any dish opens an accessible detail panel with its larger photo when
+available, localized name, price, description, and original Russian name.
 
 ## GitHub Pages deployment
 
