@@ -204,14 +204,14 @@ const categoryTranslations = {
 };
 
 const dishImages = {
-  "2:5": "assets/menu/gul-osh.jpg",
+  "2:5": "assets/menu/gul-osh.jpg?v=2",
   "3:0": "assets/menu/baliq-kabob.jpg",
   "3:2": "assets/menu/qiyma-kabob.jpg",
   "3:3": "assets/menu/pomidorli-kuskovoy.jpg",
   "3:4": "assets/menu/qoy-goshti-kabob.jpg",
   "3:7": "assets/menu/jigar-kabob.jpg",
   "3:10": "assets/menu/tovuq-kabob.jpg",
-  "4:0": "assets/menu/fri.jpg?v=2",
+  "4:0": "assets/menu/fri.jpg?v=3",
   "5:6": "assets/menu/nortok.jpg",
   "7:0": "assets/menu/pirozhnoe.jpg",
   "8:5": "assets/menu/achchiq-chuchuk.jpg",
