@@ -3,23 +3,23 @@
 const translations = {
   uz: {
     subtitle: "Restoran menyusi", welcome: "Xush kelibsiz", intro: "Mazali taomlarimiz bilan tanishing", categories: "Kategoriyalar", swipeHint: "Surib ko‘ring",
-    hours: "Har kuni: 09:00–23:00", addressLabel: "Manzil:", address: "Restoran manzili", phoneLabel: "Telefon:", service: "Xizmat haqi: 10%", waiterHint: "Taomni bosib turing — ofitsiant uchun ruscha nomi chiqadi", backToTop: "Tepaga qaytish", closeDetails: "Yopish", bonAppetit: "Yoqimli ishtaha!"
+    hours: "Har kuni: 09:00–23:00", addressLabel: "Manzil:", address: "Restoran manzili", phoneLabel: "Telefon:", service: "Xizmat haqi: 10%", waiterHint: "Taomni bosib turing — ofitsiant uchun ruscha nomi chiqadi", backToTop: "Tepaga qaytish", bonAppetit: "Yoqimli ishtaha!"
   },
   ru: {
     subtitle: "Меню ресторана", welcome: "Добро пожаловать", intro: "Познакомьтесь с нашими вкусными блюдами", categories: "Категории", swipeHint: "Листайте",
-    hours: "Ежедневно: 09:00–23:00", addressLabel: "Адрес:", address: "Адрес ресторана", phoneLabel: "Телефон:", service: "Обслуживание: 10%", waiterHint: "", backToTop: "Наверх", closeDetails: "Закрыть", bonAppetit: "Приятного аппетита!"
+    hours: "Ежедневно: 09:00–23:00", addressLabel: "Адрес:", address: "Адрес ресторана", phoneLabel: "Телефон:", service: "Обслуживание: 10%", waiterHint: "", backToTop: "Наверх", bonAppetit: "Приятного аппетита!"
   },
   en: {
     subtitle: "Restaurant menu", welcome: "Welcome", intro: "Discover our delicious dishes", categories: "Categories", swipeHint: "Swipe",
-    hours: "Daily: 09:00–23:00", addressLabel: "Address:", address: "Restaurant address", phoneLabel: "Phone:", service: "Service charge: 10%", waiterHint: "Press and hold a dish to show its original Russian menu name", backToTop: "Back to top", closeDetails: "Close", bonAppetit: "Enjoy your meal!"
+    hours: "Daily: 09:00–23:00", addressLabel: "Address:", address: "Restaurant address", phoneLabel: "Phone:", service: "Service charge: 10%", waiterHint: "Press and hold a dish to show its original Russian menu name", backToTop: "Back to top", bonAppetit: "Enjoy your meal!"
   },
   zh: {
     subtitle: "餐厅菜单", welcome: "欢迎光临", intro: "探索我们的美味佳肴", categories: "菜品分类", swipeHint: "滑动浏览",
-    hours: "每日：09:00–23:00", addressLabel: "地址：", address: "餐厅地址", phoneLabel: "电话：", service: "服务费：10%", waiterHint: "长按菜品可显示菜单上的原始俄语名称", backToTop: "返回顶部", closeDetails: "关闭", bonAppetit: "祝您用餐愉快！"
+    hours: "每日：09:00–23:00", addressLabel: "地址：", address: "餐厅地址", phoneLabel: "电话：", service: "服务费：10%", waiterHint: "长按菜品可显示菜单上的原始俄语名称", backToTop: "返回顶部", bonAppetit: "祝您用餐愉快！"
   },
   ko: {
     subtitle: "레스토랑 메뉴", welcome: "환영합니다", intro: "맛있는 요리를 만나보세요", categories: "카테고리", swipeHint: "옆으로 밀기",
-    hours: "매일: 09:00–23:00", addressLabel: "주소:", address: "레스토랑 주소", phoneLabel: "전화:", service: "서비스 요금: 10%", waiterHint: "음식을 길게 누르면 메뉴의 원래 러시아어 이름이 표시됩니다", backToTop: "맨 위로", closeDetails: "닫기", bonAppetit: "맛있게 드세요!"
+    hours: "매일: 09:00–23:00", addressLabel: "주소:", address: "레스토랑 주소", phoneLabel: "전화:", service: "서비스 요금: 10%", waiterHint: "음식을 길게 누르면 메뉴의 원래 러시아어 이름이 표시됩니다", backToTop: "맨 위로", bonAppetit: "맛있게 드세요!"
   }
 };
 
@@ -64,7 +64,14 @@ const menu = [
     ["Garnirli trio", "Трио с гарниром", "45 000 so‘m", "1 porsiya · 15 daqiqa", "1 порция · 15 минут"],
     ["Sabzavotli go‘sht", "Мясо с овощами", "60 000 so‘m", "1 porsiya · 15 daqiqa", "1 порция · 15 минут"],
     ["Sabzavotli tovuq", "Курица с овощами", "40 000 so‘m", "1 porsiya · 15 daqiqa", "1 порция · 15 минут"],
-    ["Tovuq", "Курица", "60 000 so‘m", "300 g · 1 kg — 200 000 so‘m", "300 г · 1 кг — 200 000 сум"]
+    ["Tovuq", "Курица", "60 000 so‘m", "300 g · 1 kg — 200 000 so‘m", "300 г · 1 кг — 200 000 сум"],
+    ["MBS", "МБС", "30 000 so‘m", "1 kg — 80 000 so‘m", "1 кг — 80 000 сум"],
+    ["Buxoro somsasi", "Самса бухарская", "15 000 so‘m", "1 dona · 10 daqiqa", "1 шт. · 10 минут"],
+    ["Kartoshkali somsa", "Самса с картошкой", "6 000 so‘m", "1 dona", "1 шт."],
+    ["Tovuqli somsa", "Самса с курицей", "8 000 so‘m", "1 dona", "1 шт."],
+    ["Go‘shtli somsa", "Самса с мясом", "15 000 so‘m", "1 dona", "1 шт."],
+    ["Tandir", "Тандыр", "200 000 so‘m", "1 kg", "1 кг"],
+    ["Tandir go‘sht", "Тандыр гушт", "60 000 so‘m", "1 porsiya · 1 kg — 90 000 so‘m", "1 порция · 1 кг — 90 000 сум"]
   ]},
   { id: "kabob", name: { uz: "Kaboblar", ru: "Шашлыки" }, items: [
     ["Baliq kabob", "Рыба", "22 000 so‘m", "Tayyorlanish: 10 daqiqa", "Приготовление: 10 минут"],
@@ -184,13 +191,6 @@ const menu = [
 const tabsRoot = document.querySelector("#category-tabs");
 const sectionsRoot = document.querySelector("#menu-sections");
 const backToTop = document.querySelector("#back-to-top");
-const dishDialog = document.querySelector("#dish-dialog");
-const dishDialogImage = document.querySelector("#dish-dialog-image");
-const dishDialogOriginal = document.querySelector("#dish-dialog-original");
-const dishDialogTitle = document.querySelector("#dish-dialog-title");
-const dishDialogPrice = document.querySelector("#dish-dialog-price");
-const dishDialogDescription = document.querySelector("#dish-dialog-description");
-const dishDialogClose = document.querySelector("#dish-dialog-close");
 const supportedLanguages = ["ru", "en", "zh", "ko"];
 const savedLanguage = localStorage.getItem("labi-havus-language");
 let language = supportedLanguages.includes(savedLanguage) ? savedLanguage : "ru";
@@ -212,6 +212,7 @@ const categoryTranslations = {
 
 const dishImages = {
   "2:5": "assets/menu/gul-osh.jpg?v=2",
+  "2:13": "assets/menu/buxoro-somsa.jpg",
   "3:0": "assets/menu/baliq-kabob.jpg",
   "3:2": "assets/menu/qiyma-kabob.jpg",
   "3:3": "assets/menu/pomidorli-kuskovoy.jpg",
@@ -271,7 +272,7 @@ function renderMenu() {
         const imageMarkup = imageSource
           ? `<img class="menu-item-image" src="${imageSource}" alt="${dishName}" width="240" height="180" loading="lazy" decoding="async">`
           : "";
-        return `<li class="menu-item dish-details-trigger${imageSource ? " menu-item-with-image" : ""}${holdEnabled ? " waiter-hold-enabled" : ""}" data-category-index="${categoryIndex}" data-item-index="${itemIndex}" role="button" tabindex="0" aria-label="${dishName}">${imageMarkup}<div class="menu-item-content"><div class="menu-item-main"><h3 class="dish-name">${dishNameMarkup}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></div></li>`;
+        return `<li class="menu-item${imageSource ? " menu-item-with-image" : ""}${holdEnabled ? " waiter-hold-enabled" : ""}">${imageMarkup}<div class="menu-item-content"><div class="menu-item-main"><h3 class="dish-name">${dishNameMarkup}</h3><span class="dish-price">${localizedPrice(item[2])}</span></div><p class="dish-description${isMeta ? " menu-meta" : ""}">${description}</p></div></li>`;
       }).join("")}</ul>
     </section>`;
   }).join("");
@@ -384,9 +385,6 @@ function updateInterface() {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
-  dishDialog.querySelectorAll("[data-dialog-close]").forEach(button => {
-    button.setAttribute("aria-label", copy.closeDetails);
-  });
   renderMenu();
 }
 
@@ -431,8 +429,6 @@ tabsRoot.addEventListener("click", event => {
 let waiterHoldTimer;
 let waiterHoldItem;
 let waiterPointerStart;
-let suppressDishClick;
-let dishDialogReturnFocus;
 
 function clearWaiterHold() {
   clearTimeout(waiterHoldTimer);
@@ -451,7 +447,6 @@ sectionsRoot.addEventListener("pointerdown", event => {
   waiterPointerStart = { x: event.clientX, y: event.clientY };
   waiterHoldTimer = setTimeout(() => {
     item.classList.add("show-waiter-original");
-    suppressDishClick = item;
     waiterHoldTimer = undefined;
   }, 400);
 });
@@ -465,71 +460,6 @@ document.addEventListener("pointerup", clearWaiterHold);
 document.addEventListener("pointercancel", clearWaiterHold);
 sectionsRoot.addEventListener("contextmenu", event => {
   if (event.target.closest(".waiter-hold-enabled")) event.preventDefault();
-});
-
-function openDishDetails(trigger) {
-  const categoryIndex = Number(trigger.dataset.categoryIndex);
-  const itemIndex = Number(trigger.dataset.itemIndex);
-  const item = menu[categoryIndex]?.items[itemIndex];
-  if (!item) return;
-
-  const localized = window.menuTranslations?.[language]?.[categoryIndex]?.[itemIndex];
-  const useRussianMenu = language === "ru";
-  const dishName = localized?.[0] || item[useRussianMenu ? 1 : 0];
-  const description = convertInlinePrices(localized?.[1] ?? item[useRussianMenu ? 4 : 3]);
-  const imageSource = dishImages[`${categoryIndex}:${itemIndex}`];
-
-  dishDialogTitle.textContent = dishName;
-  dishDialogPrice.textContent = localizedPrice(item[2]);
-  dishDialogDescription.textContent = description;
-  dishDialogDescription.hidden = !description;
-  dishDialogOriginal.textContent = language === "ru" ? "" : `RU  ${item[1]}`;
-  dishDialogOriginal.hidden = language === "ru";
-  dishDialogImage.hidden = !imageSource;
-  if (imageSource) {
-    dishDialogImage.src = imageSource;
-    dishDialogImage.alt = dishName;
-  } else {
-    dishDialogImage.removeAttribute("src");
-    dishDialogImage.alt = "";
-  }
-
-  dishDialogReturnFocus = trigger;
-  dishDialog.hidden = false;
-  document.body.classList.add("dish-dialog-open");
-  dishDialogClose.focus();
-}
-
-function closeDishDetails() {
-  if (dishDialog.hidden) return;
-  dishDialog.hidden = true;
-  document.body.classList.remove("dish-dialog-open");
-  dishDialogReturnFocus?.focus();
-  dishDialogReturnFocus = undefined;
-}
-
-sectionsRoot.addEventListener("click", event => {
-  const trigger = event.target.closest(".dish-details-trigger");
-  if (!trigger) return;
-  if (suppressDishClick === trigger) {
-    suppressDishClick = undefined;
-    event.preventDefault();
-    return;
-  }
-  suppressDishClick = undefined;
-  openDishDetails(trigger);
-});
-sectionsRoot.addEventListener("keydown", event => {
-  const trigger = event.target.closest(".dish-details-trigger");
-  if (!trigger || !["Enter", " "].includes(event.key)) return;
-  event.preventDefault();
-  openDishDetails(trigger);
-});
-dishDialog.addEventListener("click", event => {
-  if (event.target.closest("[data-dialog-close]")) closeDishDetails();
-});
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeDishDetails();
 });
 
 document.querySelectorAll(".language-button").forEach(button => button.addEventListener("click", () => {
