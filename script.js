@@ -212,7 +212,7 @@ const categoryTranslations = {
 
 const dishImages = {
   "2:5": "assets/menu/gul-osh.jpg?v=2",
-  "2:13": "assets/menu/buxoro-somsa.jpg",
+  "2:16": "assets/menu/buxoro-somsa.jpg",
   "3:0": "assets/menu/baliq-kabob.jpg",
   "3:2": "assets/menu/qiyma-kabob.jpg",
   "3:3": "assets/menu/pomidorli-kuskovoy.jpg",
