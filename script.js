@@ -147,47 +147,6 @@ const menu = [
     ["Qaymoq", "Каймак", "8 000 so‘m", "", ""]
   ]},
 ];
-/* Previous sample menu kept below for reference and can be removed when no longer needed.
-  { id: "milliy", name: { uz: "Milliy taomlar", ru: "Национальные блюда" }, items: [
-    ["Osh", "Плов", "45 000 so‘m", "Mol go‘shti, guruch, sabzi va ziravorlar", "Говядина, рис, морковь и специи"],
-    ["Manti", "Манты", "38 000 so‘m", "Go‘sht va piyoz bilan tayyorlangan bug‘lama xamir", "Тесто на пару с мясом и луком"],
-    ["Qozon kabob", "Казан-кебаб", "68 000 so‘m", "Mol go‘shti, kartoshka va maxsus ziravorlar", "Говядина, картофель и фирменные специи"],
-    ["Norin", "Нарын", "42 000 so‘m", "Mayin xamir, go‘sht va xushbo‘y ziravorlar", "Тонкое тесто, мясо и ароматные специи"]
-  ]},
-  { id: "suyuq", name: { uz: "Suyuq taomlar", ru: "Супы" }, items: [
-    ["Mastava", "Мастава", "30 000 so‘m", "Guruch, go‘sht va sabzavotlardan tayyorlangan sho‘rva", "Суп с рисом, мясом и овощами"],
-    ["Chuchvara sho‘rva", "Суп с чучварой", "32 000 so‘m", "Qo‘lda tugilgan chuchvara va mazali bulyon", "Домашние пельмени ручной лепки в ароматном бульоне"],
-    ["Sho‘rva", "Шурпа", "35 000 so‘m", "Mol go‘shti, kartoshka, sabzi va ko‘katlar", "Говядина, картофель, морковь и зелень"],
-    ["Lag‘mon", "Лагман", "40 000 so‘m", "Qo‘lda cho‘zilgan xamir, go‘sht va sabzavotlar", "Домашняя лапша, мясо и овощи"]
-  ]},
-  { id: "kabob", name: { uz: "Kaboblar", ru: "Шашлыки" }, items: [
-    ["Qiyma kabob", "Шашлык из фарша", "22 000 so‘m", "Mol go‘shti va maxsus ziravorlardan tayyorlangan kabob", "Шашлык из говяжьего фарша с фирменными специями"],
-    ["Jaz kabob", "Жаз-кебаб", "27 000 so‘m", "Mayin mol go‘shti bo‘laklari", "Нежные кусочки говядины"],
-    ["Tovuq kabob", "Куриный шашлык", "24 000 so‘m", "Marinadlangan tovuq go‘shti", "Маринованное куриное мясо"],
-    ["Assorti kabob", "Ассорти шашлыков", "85 000 so‘m", "Turli xil kaboblardan tayyorlangan to‘plam", "Набор из разных видов шашлыка"]
-  ]},
-  { id: "salat", name: { uz: "Salatlar", ru: "Салаты" }, items: [
-    ["Achchiq-chuchuk", "Аччик-чучук", "18 000 so‘m", "Pomidor, piyoz va achchiq qalampir", "Помидоры, лук и острый перец"],
-    ["Bahor salati", "Салат «Весна»", "22 000 so‘m", "Bodring, pomidor, ko‘katlar va maxsus sous", "Огурцы, помидоры, зелень и фирменный соус"],
-    ["Sezar", "Цезарь", "38 000 so‘m", "Tovuq go‘shti, salat bargi, pishloq va sous", "Курица, листья салата, сыр и соус"],
-    ["Olivye", "Оливье", "28 000 so‘m", "Klassik retsept asosida tayyorlangan salat", "Салат, приготовленный по классическому рецепту"]
-  ]},
-  { id: "ichimlik", name: { uz: "Ichimliklar", ru: "Напитки" }, items: [
-    ["Ko‘k choy", "Зелёный чай", "8 000 so‘m", "Choynakda tortiladi", "Подаётся в чайнике"],
-    ["Qora choy", "Чёрный чай", "8 000 so‘m", "Choynakda tortiladi", "Подаётся в чайнике"],
-    ["Coca-Cola 0.5 L", "Coca-Cola 0,5 л", "12 000 so‘m", "", ""],
-    ["Fanta 0.5 L", "Fanta 0,5 л", "12 000 so‘m", "", ""],
-    ["Mineral suv 0.5 L", "Минеральная вода 0,5 л", "8 000 so‘m", "", ""],
-    ["Sharbat 1 L", "Сок 1 л", "25 000 so‘m", "", ""]
-  ]},
-  { id: "desert", name: { uz: "Desertlar", ru: "Десерты" }, items: [
-    ["Asalli tort", "Медовик", "28 000 so‘m", "Mayin qatlamlar va asal kremi", "Нежные коржи и медовый крем"],
-    ["Chizkeyk", "Чизкейк", "32 000 so‘m", "Qaymoqli pishloq asosida tayyorlangan desert", "Десерт на основе сливочного сыра"],
-    ["Mevali assorti", "Фруктовое ассорти", "45 000 so‘m", "Mavsumiy yangi mevalar to‘plami", "Ассорти свежих сезонных фруктов"],
-    ["Muzqaymoq", "Мороженое", "20 000 so‘m", "Uch xil ta’m tanlovi", "Три вкуса на выбор"]
-  ]}
-]; */
-
 const tabsRoot = document.querySelector("#category-tabs");
 const sectionsRoot = document.querySelector("#menu-sections");
 const backToTop = document.querySelector("#back-to-top");
